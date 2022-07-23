@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>METANIT.COM</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="upper">
+        <div class="text-logo">
+            LST Sorter [0, 1]
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="leftList" class="list">
+        </div>
+
+        <div class="control">
+            <button class="functional-button" onclick="document.getElementById('file-input').click();">Загрузить файл</button>
+            <button id="transfer" class="functional-button">Сортировать</button>
+            <select id="separator">
+                
+                <option value=" ">Пробел</option>
+                <option value='\n'>Перенос строки</option>
+                <option value=",">Запятая</option>
+                <option value=".">Точка</option>
+                <option value=";">Точка с запятой</option>
+                
+            </select>
+            <select id="sort-type">
+                <option value="0">По возрастанию</option>
+                <option value="1">По убыванию</option>
+                <option value="2">Перевернуть</option>
+            </select>
+            <button id="save">Сохранить</button>
+        </div>
+
+        <div id="rightList" class="list">
+
+        </div>
+    </div>
+
+    <input type="file" id="file-input">
+    <div id='storage-text'></div>
+    <div id='storage-sorted-text'></div>
+    <script src="./js/main.js"></script>
+    <script src="./js/textLoader.js"></script>
+    <script src="./js/transfer.js"></script>
+    <script src="./js/fileSaver.js"></script>
+
+</body>
+
+</html>
