@@ -21,10 +21,11 @@ app.Run(async (context) =>
             if (data != null)
             {
                 SortMethod methodSort = (SortMethod)data.sort;
+                SortType type = (SortType)data.type;
                 string words = data.word;
                 char separator = (char)data.separator;
 
-                MyList list = new MyList(words, methodSort, separator);
+                MyList list = new MyList(words, methodSort, type, separator);
                 list.Sort();
 
                 await response.WriteAsJsonAsync(new { result = list.ToString(separator) });
@@ -41,4 +42,4 @@ app.Run(async (context) =>
 
 app.Run();
 
-public record ResultResponce(int sort, string word, char separator);
+public record ResultResponce(int sort,int type ,string word, char separator);

@@ -8,13 +8,16 @@ async function sendData() {
     }
 
     sortType = document.getElementById('sort-type').value;
+    sortMethod = document.getElementById('sort-method').value;
+
     var response = fetch("https://localhost:7234/transfer", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({
             sort: sortType,
             word: words,
-            separator: separator
+            separator: separator,
+            type: sortMethod
         })
 
     }).then(response => {

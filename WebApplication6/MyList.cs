@@ -2,19 +2,27 @@
 {
     public enum SortMethod: int
     {
-        lenghtUp = 0,
-        lenghtDown = 1,
+        Up = 0,
+        Down = 1,
         reverse = 2
+    }
+
+    public enum SortType: int
+    {
+        lenght = 0,
+        compareTo = 1
     }
 
     public class MyList
     {
         public string[] Words { get; set; }
         public SortMethod SortMethod { get; set; }
-
-        public MyList(string words, SortMethod _sort, char separator)
+        public SortType SortType { get; set; }
+        public MyList(string words, SortMethod _sort, SortType _type ,char separator)
         {
             SortMethod = _sort;
+            SortType = _type;
+            
             Words = SplitText(words, separator);
             
         }
@@ -23,11 +31,11 @@
         {
             switch (SortMethod)
             {
-                case SortMethod.lenghtUp:
+                case SortMethod.Up:
                     BubleSort(Words);
                     break;
 
-                case SortMethod.lenghtDown:
+                case SortMethod.Down:
                     BubleSort(Words, true);
                     break;
 
@@ -44,17 +52,35 @@
 
         private void BubleSort(string[] words, bool reverse = false)
         {
-            string temp;
+            string temp = null;
 
             for (int i = 0; i <= words.Length - 2; i++)
                 for (int j = 0; j <= words.Length - 2; j++)
                 {
-                    if (words[j].Length > words[j + 1].Length)
+                    switch (SortType)
                     {
-                        temp = words[j];
+                        case SortType.lenght:
+                            if (words[j].Length > words[j + 1].Length)
+                                temp = words[j];
+                            break;
+
+                        case SortType.compareTo:
+                            if (words[j].CompareTo(words[j + 1]) > 0)
+                                temp = words[j];
+                            break;
+
+                        default:
+                            temp = null;
+                            break;
+                    }
+
+                    if (temp != null)
+                    {
                         words[j] = words[j + 1];
                         words[j + 1] = temp;
+                        temp = null;
                     }
+
                 }
 
             if (reverse) Reverse();
